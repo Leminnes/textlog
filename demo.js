@@ -48,7 +48,12 @@ function startDemo(){
 	demoStarted = true
 
 	function start(){
-		Tesseract.recognize(input)
+		Tesseract.recognize(input, {
+            classify_enable_learning: '1',
+            tessedit_enable_dict_correction: '1',
+            tessedit_train_from_boxes: '1',
+            textord_heavy_nr: '1'
+        })
 		.progress(progressUpdate)
 		.then(result)
 
@@ -172,7 +177,12 @@ function play(){
 	output_text.innerHTML = ''
 	// output_overlay.innerHTML = ''
 
-	Tesseract.recognize(input, language)
+	Tesseract.recognize(input, language, {
+        classify_enable_learning: '1',
+        tessedit_enable_dict_correction: '1',
+        tessedit_train_from_boxes: '1',
+        textord_heavy_nr: '1'
+    })
 	.progress( progressUpdate )
 	.then( result )
 }
@@ -205,7 +215,12 @@ document.body.addEventListener('drop', function(e){
     var file = e.dataTransfer.files[0]
 	var reader = new FileReader();
 
-	Tesseract.recognize(file, language)
+	Tesseract.recognize(file, language, {
+        classify_enable_learning: '1',
+        tessedit_enable_dict_correction: '1',
+        tessedit_train_from_boxes: '1',
+        textord_heavy_nr: '1'
+    })
 	.progress( progressUpdate )
 	.then( result )
 
